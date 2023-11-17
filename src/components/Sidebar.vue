@@ -1,3 +1,12 @@
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
+    name:"Sidebar",
+
+})
+</script>
+
+
 <template>
     <aside>
         <h1 class="text-xl" >Vue Todo App</h1>
@@ -5,15 +14,6 @@
 
 </template>
 
-
-<script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({
-    name:"Sidebar",
-
-})
-
-</script>
 
 <style scoped>
 

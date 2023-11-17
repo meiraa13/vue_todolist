@@ -1,43 +1,50 @@
-<template>
-    <div class="div-dashboard">
-        <form @submit.prevent="addTask()">
-            <input v-model="task" placeholder="Insira uma tarefa" />
-            <button>Adicionar Tarefa</button>
-        </form>
-        <TasksList :tasks="tasks" />
-    </div>
-
-</template>
-
-
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SearchBar from './SearchBar.vue';
+import InputBar from './InputBar.vue';
 import TasksList from './TasksList.vue';
-
-
 
 export default defineComponent({
     name:"Dashboard",
     components:{
-    SearchBar,
-    TasksList
-    },
+    InputBar,
+    TasksList,
+},
     data(){
         return{
-            task:"",
             tasks:[] as string[],
         }
     },
     methods:{
-        addTask(){
-            this.tasks.push(this.task)
-            this.task = ""
-            console.log(this.tasks)
+        addTask(task:string){
+            this.tasks.push(task)
+            localStorage.setItem("@Tasks", JSON.stringify(this.tasks))
+           
+        },
+        deleteTask(indexFrom:number){
+            const newArr = this.tasks.filter((task, index)=> index !== indexFrom)
+            this.tasks = newArr
+            localStorage.setItem("@Tasks",JSON.stringify(this.tasks))
+
         }
-    }
+    },
+    mounted(){
+        const localTasks = localStorage.getItem("@Tasks")
+        if(localTasks){
+            this.tasks = JSON.parse(localTasks)
+        }
+    }   
 })
 </script>
+
+
+<template>
+   
+   <div class="div-dashboard">
+        <InputBar @submitTask="addTask" />
+        <TasksList :tasks="tasks" @delete="deleteTask" />
+    </div>
+
+</template>
 
 <style scoped>
 .div-dashboard {
@@ -45,27 +52,7 @@ export default defineComponent({
     padding: 2rem;
     display: flex;
     flex-direction: column;
- 
     gap: 4rem;
-}
-
-form {
-    display: flex;
-    gap: 2rem;
-}
-
-input {
-    border: 1px solid;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    width: 30rem;
-}
-
-button {
-    background-color: aqua;
-    border: 1px solid;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
 }
 
 </style>
