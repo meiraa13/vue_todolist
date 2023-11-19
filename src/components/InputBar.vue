@@ -7,13 +7,17 @@ export default defineComponent({
 
     data(){
       return {
-        task:""
+        formData:{
+          task:"",
+          completed:false
+
+        }
       }
     },
     methods:{
       emitSubmitForm(){
-        this.$emit('submitTask', this.task)
-        this.task = ""
+        this.$emit('submitTask', this.formData)
+        this.formData.task = ""
 
       }
     },
@@ -25,7 +29,7 @@ export default defineComponent({
 
 <template>
   <form @submit.prevent="emitSubmitForm()">
-    <input  v-model="task" placeholder="Insira uma tarefa" />
+    <input  v-model="formData.task" placeholder="Insira uma tarefa" />
     <button>Adicionar</button>
   </form>
 

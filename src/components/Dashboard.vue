@@ -2,26 +2,34 @@
 import { defineComponent } from 'vue';
 import InputBar from './InputBar.vue';
 import TasksList from './TasksList.vue';
+import UncompletedTasksVue from './UncompletedTasks.vue';
+
+export interface IData {
+    task:string,
+    completed:boolean
+}
 
 export default defineComponent({
     name:"Dashboard",
     components:{
     InputBar,
     TasksList,
+    UncompletedTasksVue,
 },
     data(){
         return{
-            tasks:[] as string[],
+            tasks:[] as IData[],
         }
     },
     methods:{
-        addTask(task:string){
-            this.tasks.push(task)
+        addTask(task:IData){
+            const objCopy = {...task}
+            this.tasks.push(objCopy)
             localStorage.setItem("@Tasks", JSON.stringify(this.tasks))
            
         },
-        deleteTask(indexFrom:number){
-            const newArr = this.tasks.filter((task, index)=> index !== indexFrom)
+        deleteTask(){
+            const newArr = this.tasks.filter((task) =>!task.completed)
             this.tasks = newArr
             localStorage.setItem("@Tasks",JSON.stringify(this.tasks))
 
@@ -42,6 +50,7 @@ export default defineComponent({
    <div class="div-dashboard">
         <InputBar @submitTask="addTask" />
         <TasksList :tasks="tasks" @delete="deleteTask" />
+        <UncompletedTasksVue :tasks="tasks"/>
     </div>
 
 </template>

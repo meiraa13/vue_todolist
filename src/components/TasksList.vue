@@ -1,28 +1,60 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType  } from 'vue';
+
+interface ITask {
+    task:string,
+    completed:boolean
+}
 
 export default defineComponent({
     name:"TasksList",
-    props:["tasks"],
+    props:{
+        tasks:{
+            type:Object as PropType<ITask[]>,
+            required:true
+        }
+    },
     methods:{
-        emitDelete(indexFrom:number){
-            this.$emit('delete',indexFrom)
+        emitDelete(){
+            this.$emit('delete')
            
         }
     },
-    emits:['delete']
+    emits:['delete'],
+    computed:{
+        completedTasks(){
+            return this.tasks.filter((task)=>task.completed)
+        },
+        uncompletedTasks(){
+            return this.tasks.filter((task)=>!task.completed)
+        }
+    }
 })
 </script>
 
 <template>
     <div>
         <p v-if="tasks.length==0">Você ainda não possui nenhuma tarefa registrada</p>
-        <ul v-else>
-            <li v-for="(task, index) in tasks" :key="index">
-                <p>{{ task }}</p>
-                <button @click="emitDelete(index)" >deletar</button>
-            </li>
-        </ul>
+        <div v-else>
+            <div>
+                <ul>
+                    <h1>Tarefas completadas</h1>
+                    <li v-for="(task, index) in completedTasks" :key="index">
+                        <p>{{ task.task }}</p>
+                    </li>
+                </ul>
+                <button v-show="completedTasks.length>0" @click="emitDelete" >Limpar lista</button>
+            </div>
+
+            <ul>
+                <h1>Tarefas incompletas</h1>
+                <li v-for="(task, index) in uncompletedTasks" :key="index">
+                    <p>{{ task.task }}</p>
+                </li>
+            </ul>
+
+        </div>
     </div>
 </template>
         
