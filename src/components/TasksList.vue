@@ -1,77 +1,44 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import type { PropType  } from 'vue';
-
-interface ITask {
-    task:string,
-    completed:boolean
-}
+import { mapWritableState, mapState, mapActions } from 'pinia';
+import { useTasksStore } from '@/stores/taskStore';
 
 export default defineComponent({
     name:"TasksList",
-    props:{
-        tasks:{
-            type:Object as PropType<ITask[]>,
-            required:true
-        }
-    },
     methods:{
-        emitDelete(){
-            this.$emit('delete')
-           
-        }
+        ...mapActions(useTasksStore,['deleteList'])
     },
-    emits:['delete'],
     computed:{
-        completedTasks(){
-            return this.tasks.filter((task)=>task.completed)
-        },
-        uncompletedTasks(){
-            return this.tasks.filter((task)=>!task.completed)
-        }
+        ...mapWritableState(useTasksStore,['tasks']),
+        ...mapState(useTasksStore,['completedTasks','uncompletedTasks'])
     }
 })
 </script>
 
 <template>
-    <div>
+    <div >
         <p v-if="tasks.length==0">Você ainda não possui nenhuma tarefa registrada</p>
-        <div v-else>
+        <div v-else class="d-flex ga-12">
             <div>
-                <ul>
-                    <h1>Tarefas completadas</h1>
-                    <li v-for="(task, index) in completedTasks" :key="index">
+                <h1>Tarefas completadas</h1>
+                <v-card class="overflow-auto bg-blue-grey-lighten-4 text-decoration-line-through"  height="300" width="400">
+                    <v-list-item v-for="(task, index) in completedTasks" :key="index">
                         <p>{{ task.task }}</p>
-                    </li>
-                </ul>
-                <button v-show="completedTasks.length>0" @click="emitDelete" >Limpar lista</button>
+                    </v-list-item>
+                </v-card>
+                <v-btn v-show="completedTasks.length>0" @click="deleteList" >Limpar lista</v-btn>
+            </div>
+            <div>
+                <h1>Tarefas incompletas</h1>
+                <v-card class="overflow-auto" height="300" width="400">
+                    <v-list-item v-for="(task, index) in uncompletedTasks" :key="index">
+                        <p>{{ task.task }}</p>
+                    </v-list-item>
+                </v-card>
             </div>
 
-            <ul>
-                <h1>Tarefas incompletas</h1>
-                <li v-for="(task, index) in uncompletedTasks" :key="index">
-                    <p>{{ task.task }}</p>
-                </li>
-            </ul>
 
         </div>
     </div>
 </template>
         
-
-<style scoped>
-    
-li {
-    list-style: square;
-    padding: 0.5rem;
-    display: flex;
-    gap: 1rem;
-    
-}
-
-button {
-    border: 1px solid;
-}
-
-
-</style>

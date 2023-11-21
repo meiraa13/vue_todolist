@@ -1,30 +1,23 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import UncompletedTasks from './UncompletedTasks.vue';
 export default defineComponent({
-    name:"Sidebar",
-
+    name: "Sidebar",
+    components: { UncompletedTasks }
 })
 </script>
 
 
 <template>
-    <aside>
-        <h1 class="text-xl" >Vue Todo App</h1>
-    </aside>
+    
+    <v-card 
+    image="https://www.marketing91.com/wp-content/uploads/2020/03/To-do-List-scaled.jpg"  
+    class="pa-10 img" 
+    elevation="10"
+    >   
+        <h3 class="text-center">Marque a tarefa quando concluída</h3>
+        <UncompletedTasks />
+    </v-card>
 
 </template>
 
-
-<style scoped>
-
-aside {
-    border-right: 2px solid;
-    width: 20rem;
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    background-color: burlywood;
-
-}
-
-</style>

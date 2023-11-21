@@ -2,9 +2,10 @@
 import { defineComponent } from 'vue';
 import InputBar from './InputBar.vue';
 import TasksList from './TasksList.vue';
-import UncompletedTasksVue from './UncompletedTasks.vue';
+import { mapWritableState } from 'pinia';
+import { useTasksStore } from '@/stores/taskStore';
 
-export interface IData {
+export interface ITask {
     task:string,
     completed:boolean
 }
@@ -14,26 +15,9 @@ export default defineComponent({
     components:{
     InputBar,
     TasksList,
-    UncompletedTasksVue,
 },
-    data(){
-        return{
-            tasks:[] as IData[],
-        }
-    },
-    methods:{
-        addTask(task:IData){
-            const objCopy = {...task}
-            this.tasks.push(objCopy)
-            localStorage.setItem("@Tasks", JSON.stringify(this.tasks))
-           
-        },
-        deleteTask(){
-            const newArr = this.tasks.filter((task) =>!task.completed)
-            this.tasks = newArr
-            localStorage.setItem("@Tasks",JSON.stringify(this.tasks))
-
-        }
+    computed:{
+        ...mapWritableState(useTasksStore,['tasks'])
     },
     mounted(){
         const localTasks = localStorage.getItem("@Tasks")
@@ -47,17 +31,16 @@ export default defineComponent({
 
 <template>
    
-   <div class="div-dashboard">
-        <InputBar @submitTask="addTask" />
-        <TasksList :tasks="tasks" @delete="deleteTask" />
-        <UncompletedTasksVue :tasks="tasks"/>
+   <div class="div-dashboard bg-blue-grey-lighten-5">
+        <InputBar  />
+        <TasksList  />
     </div>
 
 </template>
 
 <style scoped>
 .div-dashboard {
-    width: 70%;
+    width: 100%;
     padding: 2rem;
     display: flex;
     flex-direction: column;

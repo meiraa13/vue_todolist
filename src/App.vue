@@ -15,7 +15,7 @@ export default defineComponent({
 
 <template>
 
-<main>
+<main class="d-flex ">
   <Sidebar />
   <Dashboard />
 </main>
@@ -26,9 +26,8 @@ export default defineComponent({
 <style>
 
 main {
-  display: flex;
   height: 100vh;
-  gap: 5rem;
+
 
 
 }
