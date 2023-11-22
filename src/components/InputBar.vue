@@ -20,9 +20,9 @@ export default defineComponent({
 
 
 <template>
-  <form class="d-flex ga-4  " @submit.prevent="addTask(formData)">
-    <v-text-field variant="solo-filled"  v-model="formData.task" placeholder="Insira uma tarefa" ></v-text-field>
-    <v-btn class="mt-2" type="submit">Adicionar</v-btn>
+  <form @submit.prevent="addTask(formData)">
+    <input  v-model="formData.task" placeholder="Insert a new task" />
+    <button type="submit">Add</button>
   </form>
 
 
@@ -31,6 +31,32 @@ export default defineComponent({
 
 <style scoped>
 
+form {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
+input {
+  border-style: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+button {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border-style: none;
+}
+
+
+
+@media (min-width: 769px) {
+
+  form {
+    
+  }
+}
 
 </style>

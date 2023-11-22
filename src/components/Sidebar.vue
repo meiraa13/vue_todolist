@@ -10,14 +10,36 @@ export default defineComponent({
 
 <template>
     
-    <v-card 
-    image="https://www.marketing91.com/wp-content/uploads/2020/03/To-do-List-scaled.jpg"  
-    class="pa-10 img" 
-    elevation="10"
-    >   
-        <h3 class="text-center">Marque a tarefa quando concluída</h3>
+    <div class="div-sidebar"   image="https://www.marketing91.com/wp-content/uploads/2020/03/To-do-List-scaled.jpg"   >   
+        <h3 >Task Manager</h3>
         <UncompletedTasks />
-    </v-card>
+    </div>
 
 </template>
+
+<style scoped>
+
+.div-sidebar{
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color:blanchedalmond;
+    padding: 1rem;
+
+}
+
+h3 {
+    text-align: center;
+}
+
+
+@media (min-width: 769px) {
+
+    .div-sidebar {
+        padding: 3rem;
+    }
+}
+
+</style>
 

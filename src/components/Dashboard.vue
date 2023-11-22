@@ -31,7 +31,7 @@ export default defineComponent({
 
 <template>
    
-   <div class="div-dashboard bg-blue-grey-lighten-5">
+   <div class="div-dashboard" >
         <InputBar  />
         <TasksList  />
     </div>
@@ -39,12 +39,19 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.div-dashboard {
-    width: 100%;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
+
+.div-dashboard{
+    padding: 1rem;
+}
+
+
+
+@media (min-width: 769px) {
+
+    .div-dashboard {
+        padding: 3rem;
+        width: 100%;
+    }
 }
 
 </style>
