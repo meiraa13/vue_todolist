@@ -16,29 +16,108 @@ export default defineComponent({
 </script>
 
 <template>
-    <div >
-        <p v-if="tasks.length==0">Você ainda não possui nenhuma tarefa registrada</p>
-        <div v-else class="d-flex ga-12">
-            <div>
-                <h1>Tarefas completadas</h1>
-                <v-card class="overflow-auto bg-blue-grey-lighten-4 text-decoration-line-through"  height="300" width="400">
-                    <v-list-item v-for="(task, index) in completedTasks" :key="index">
-                        <p>{{ task.task }}</p>
-                    </v-list-item>
-                </v-card>
-                <v-btn v-show="completedTasks.length>0" @click="deleteList" >Limpar lista</v-btn>
+    <div class="div-tasklist" >
+        <p  v-if="tasks.length==0">Você ainda não possui nenhuma tarefa registrada</p>
+        <div class="div-tasks" v-else>
+            <div class="div-ul" >
+                <h4>Completed Tasks</h4>
+                <ul class="completed">
+                    <li v-for="(task, index) in completedTasks" :key="index">
+                        <p class="completed">{{ task.task }}</p>
+                    </li>
+                </ul>
+                <button v-show="completedTasks.length>0" @click="deleteList" >Clear tasks</button>
             </div>
-            <div>
-                <h1>Tarefas incompletas</h1>
-                <v-card class="overflow-auto" height="300" width="400">
-                    <v-list-item v-for="(task, index) in uncompletedTasks" :key="index">
+            <div class="div-ul">
+                <h4>Uncompleted Tasks</h4>
+                <ul >
+                    <li v-for="(task, index) in uncompletedTasks" :key="index">
                         <p>{{ task.task }}</p>
-                    </v-list-item>
-                </v-card>
+                    </li>
+                </ul>
             </div>
-
-
         </div>
     </div>
 </template>
+
+<style scoped>
+
+.div-tasklist{
+    margin-top: 2rem;
+
+
+}
+
+
+.div-tasks{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.div-ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+ul{
+    border: 2px solid cadetblue;
+    background-color: #FFFDE7;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    height: 200px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+ 
+
+}
+
+
+h4 {
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}   
+
+button {
+    margin-top: 0.5rem;
+    width: fit-content;
+    padding: 0.3rem 1rem;
+}
+
+.completed {
+    text-decoration: line-through;
+    background-color: #E8F5E9;
+}
+
+
+@media (min-width: 769px) {
+
+    .div-tasks{
+        flex-direction: row;
+        height: 100%;
+    }
+
+    ul {
+        height: 250px;
+        overflow: auto;
+        max-width: 400px;
+    }
+
+    h4{
+        font-size: larger;
+        justify-content: start;
+    }
+
+
+}
+
+</style>
         
