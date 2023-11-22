@@ -30,6 +30,9 @@ ul {
     background-color: white;
     border: 3px solid cadetblue;
     padding: 1rem;
+    height: 10rem;
+    max-height: 10rem;
+    overflow: auto;
     border-radius: 0.5rem;
     opacity: 0.9;
 }

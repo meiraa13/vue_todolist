@@ -24,10 +24,14 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    height: 15rem;
     background-image: url('/todo-img.jpg');
     background-position: center;
     background-size: cover;
     padding: 1rem;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 
 }
 
@@ -43,6 +47,7 @@ h3 {
         background-image: url('/todo-img.jpg');
         background-position: center;
         width: 400px;
+        height: unset;
         background-size: cover;
         display: flex;
         flex-direction: column;

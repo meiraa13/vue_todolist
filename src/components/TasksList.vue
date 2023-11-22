@@ -23,7 +23,7 @@ export default defineComponent({
                 <h4>Completed Tasks</h4>
                 <ul class="completed">
                     <li v-for="(task, index) in completedTasks" :key="index">
-                        <p class="completed">{{ task.task }}</p>
+                        <p class="b-bottom">{{ task.task }}</p>
                     </li>
                 </ul>
                 <button v-show="completedTasks.length>0" @click="deleteList" >Clear tasks</button>
@@ -32,7 +32,7 @@ export default defineComponent({
                 <h4>Uncompleted Tasks</h4>
                 <ul >
                     <li v-for="(task, index) in uncompletedTasks" :key="index">
-                        <p>{{ task.task }}</p>
+                        <p class="b-bottom" >{{ task.task }}</p>
                     </li>
                 </ul>
             </div>
@@ -48,6 +48,9 @@ export default defineComponent({
 
 }
 
+.b-bottom{
+    border-bottom: 1px solid;
+}
 
 .div-tasks{
     display: flex;
@@ -63,8 +66,8 @@ export default defineComponent({
 }
 
 ul{
-    border: 2px solid cadetblue;
-    background-color: #FFFDE7;
+    border: 3px solid #E53935;
+    background-color: white;
     padding: 1rem;
     border-radius: 0.5rem;
     height: 200px;
@@ -73,6 +76,9 @@ ul{
     flex-direction: column;
     gap: 1rem;
     width: 100%;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
  
 
 }
@@ -94,7 +100,8 @@ button {
 
 .completed {
     text-decoration: line-through;
-    background-color: #E8F5E9;
+    background-color: white;
+    border: 3px solid #43A047;
 }
 
 

@@ -22,7 +22,7 @@ export default defineComponent({
 <template>
   <form @submit.prevent="addTask(formData)">
     <input  v-model="formData.task" placeholder="Insert a new task" />
-    <button type="submit">Add</button>
+    <button :disabled="formData.task.length == 0" type="submit">Add</button>
   </form>
 
 
@@ -42,6 +42,9 @@ input {
   padding: 0.5rem;
   border-radius: 0.5rem;
   width: 100%;
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 }
 
 button {
