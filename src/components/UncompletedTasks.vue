@@ -24,5 +24,37 @@ export default defineComponent({
                 
 </template>
 
+<style scoped>
 
+ul {
+    background-color: white;
+    border: 3px solid cadetblue;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    opacity: 0.9;
+}
+
+
+@media (min-width: 769px) {
+    ul{
+        background-color: white;
+        border: 3px solid cadetblue;
+        overflow: auto;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        max-height: 19rem;
+        height: 19rem;
+        
+    }   
+
+    span {
+        text-decoration: underline;
+    }
+
+}
+  
+
+
+
+</style>
 

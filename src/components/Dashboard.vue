@@ -42,6 +42,7 @@ export default defineComponent({
 
 .div-dashboard{
     padding: 1rem;
+    background-color:#ECEFF1 ;
 }
 
 

@@ -46,17 +46,9 @@ input {
 
 button {
   padding: 0.5rem;
-  border-radius: 0.5rem;
-  border-style: none;
 }
 
 
 
-@media (min-width: 769px) {
-
-  form {
-    
-  }
-}
 
 </style>

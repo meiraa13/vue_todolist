@@ -17,11 +17,11 @@ export default defineComponent({
 
 <template>
     <div class="div-tasklist" >
-        <p v-if="tasks.length==0">Você ainda não possui nenhuma tarefa registrada</p>
+        <p  v-if="tasks.length==0">Você ainda não possui nenhuma tarefa registrada</p>
         <div class="div-tasks" v-else>
             <div class="div-ul" >
                 <h4>Completed Tasks</h4>
-                <ul >
+                <ul class="completed">
                     <li v-for="(task, index) in completedTasks" :key="index">
                         <p class="completed">{{ task.task }}</p>
                     </li>
@@ -44,9 +44,10 @@ export default defineComponent({
 
 .div-tasklist{
     margin-top: 2rem;
-    height: 80%;
+
 
 }
+
 
 .div-tasks{
     display: flex;
@@ -62,7 +63,8 @@ export default defineComponent({
 }
 
 ul{
-    border: 1px solid;
+    border: 2px solid cadetblue;
+    background-color: #FFFDE7;
     padding: 1rem;
     border-radius: 0.5rem;
     height: 200px;
@@ -85,12 +87,14 @@ h4 {
 }   
 
 button {
+    margin-top: 0.5rem;
     width: fit-content;
     padding: 0.3rem 1rem;
 }
 
 .completed {
     text-decoration: line-through;
+    background-color: #E8F5E9;
 }
 
 

@@ -24,7 +24,9 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color:blanchedalmond;
+    background-image: url('../../public/todo-img.jpg');
+    background-position: center;
+    background-size: cover;
     padding: 1rem;
 
 }
@@ -38,7 +40,16 @@ h3 {
 
     .div-sidebar {
         padding: 3rem;
+        background-image: url('../../public/todo-img.jpg');
+        background-position: center;
+        width: 400px;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
+
+
 }
 
 </style>

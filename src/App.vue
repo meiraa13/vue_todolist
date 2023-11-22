@@ -40,13 +40,22 @@ export default defineComponent({
 
 button {
   cursor: pointer;
+  background-color: white;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+button:hover{
+  background-color:#CFD8DC ;
 }
 
 main {
 
-  background-color: aquamarine;
+  background-color: #ECEFF1;
   display: flex;
   flex-direction: column;
+  height:100vh ;
+
 
 }
 
